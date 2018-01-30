@@ -12,9 +12,8 @@ public class Effectivity {
         if (ranges.equals(ALL_EFFECT)) {
             return true;
         }
-        String[] rangeArr = ranges.split(", ");
         boolean isEffect = false;
-        for (String range : rangeArr) {
+        for (String range : ranges.split(", ")) {
             isEffect |= isInRange(tail, range);
         }
         return isEffect;
@@ -22,11 +21,6 @@ public class Effectivity {
 
     private boolean isInRange(String tail, String ranges) {
         String[] limits = ranges.split("-");
-        String lowLimit = limits[0];
-        String highLimit = limits[1];
-        if (tail.compareTo(lowLimit) >= 0 && tail.compareTo(highLimit) <= 0) {
-            return true;
-        }
-        return false;
+        return tail.compareTo(limits[0]) >= 0 && tail.compareTo(limits[1]) <= 0;
     }
 }
